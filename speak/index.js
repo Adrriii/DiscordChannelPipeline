@@ -31,10 +31,11 @@ module.exports = {
             if(user.id == "680938963598704650") return;
             console.log(user.username + " is speaking.  ");
 
-            console.log("Active inputs: "+mixer.inputs);
+            console.log("Active inputs: "+mixer.inputs.length);
             
             for(var i = 0; i < mixer.inputs.length; i++) {
-              if(mixer.inputs[i]._writableState.finished) {
+              
+              if(!mixer.inputs[i].hasData) {
                 mixer.inputs.splice(i,1);
                 i--;
               }
