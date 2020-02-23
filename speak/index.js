@@ -31,8 +31,8 @@ module.exports = {
             
             const audio = listener.receiver.createStream(user, { mode:"pcm" ,end: 'silence'});
             let input = mixer.input({
-                channels: 1,
-                volume: 75
+                channels: 2,
+                volume: 100,
             });
 
             audio.pipe(input);
