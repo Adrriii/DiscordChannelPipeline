@@ -5,6 +5,7 @@ module.exports = {
     
     const Discord = require('discord.js');
     const client = new Discord.Client();
+    var auth = require('./auth.json'); 
     
     client.on('ready', () => {
       console.log(`Logged in as ${client.user.tag}!`);
@@ -31,7 +32,7 @@ module.exports = {
       }
     });
     
-    client.login('secret');
+    client.login(auth["token"]);
 
     return client;
   }

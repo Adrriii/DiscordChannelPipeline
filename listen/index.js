@@ -4,6 +4,7 @@ module.exports = {
     const Discord = require('discord.js');
     const { Readable } = require('stream');
     const fs = require('fs');
+    var auth = require('./auth.json');  
     const client = new Discord.Client();
     
     client.on('ready', () => {
@@ -50,7 +51,7 @@ module.exports = {
     });
     
     // listen
-    client.login('secret');
+    client.login(auth["token"]);
 
     return client;
   }

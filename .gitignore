@@ -6,3 +6,7 @@ speak/node_modules/
 recordings/
 
 void
+
+listen/auth.json
+
+speak/auth.json
