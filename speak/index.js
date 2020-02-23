@@ -31,15 +31,16 @@ module.exports = {
             if(user.id == "680938963598704650") return;
             console.log(user.username + " is speaking.  ");
 
-            console.log("Active inputs: "+mixer.inputs.length)
+            console.log("Active inputs: "+mixer.inputs);
+            
+            for(var i = 0; i < mixer.inputs.length; i++) {
+              if(mixer.inputs[i]._writableState.finished) {
+                mixer.inputs.splice(i,1);
+                i--;
+              }
+            }
 
             if (user.id in streams) {
-              for(var i = 0; i < mixer.inputs.length; i++) {
-                if(mixer.inputs[i]._writableState.finished) {
-                  mixer.inputs.splice(i,1);
-                  i--;
-                }
-              }
               streams[user.id].destroy();
             }
             
