@@ -24,10 +24,16 @@ module.exports = {
             clearInterval: 250
           });
 
+          streams = {}
+
           listener.on('speaking', (user, speak) => {
             if (!user) return;
             if(user.id == "680938963598704650") return;
             console.log(user.username + " is speaking.  ");
+
+            if (user.id in streams) {
+              streams[user.id].destroy();
+            }
             
             const audio = listener.receiver.createStream(user, { mode:"pcm" ,end: 'silence'});
             let input = mixer.input({
@@ -36,6 +42,8 @@ module.exports = {
             });
 
             audio.pipe(input);
+
+            streams[user.id] = audio;
           });
           
           speaker.play(mixer, { type: 'converted' });

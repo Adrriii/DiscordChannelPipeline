@@ -8,8 +8,12 @@ module.exports = {
     const client = new Discord.Client();
     
     class Silence extends Readable {
+      send = 100;
       _read() {
+        if(this.send > 0) {
         this.push(Buffer.from([0xF8, 0xFF, 0xFE]));
+        this.send--;
+        }
       }
     }
 
