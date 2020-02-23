@@ -18,8 +18,9 @@ module.exports = {
           console.log('ready');
 
           listener.on('speaking', (user, speak) => {
+            if (!user) return;
             if(user.id == "680938963598704650") return;
-            console.log(user);
+            console.log(user.username + " is speaking.  ");
 
             const audio = listener.receiver.createStream(user, { end: 'silence'});
             speaker.play(audio, { type: 'opus' });

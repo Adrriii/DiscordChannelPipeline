@@ -20,8 +20,9 @@ module.exports = {
       return fs.createWriteStream(fileName);
     }
     
-    client.on('ready', msg => {
-      voiceChannel = client.channels.cache.get("680915973360058414")
+    function listenToServer(client, id) {
+
+      voiceChannel = client.channels.cache.get(id) // // 680915973360058414 "466982261351383043"
         voiceChannel.join()
         .then(conn => { // Connection is an instance of VoiceConnection
           conn.play(new Silence(), { type: 'opus' });
@@ -29,6 +30,11 @@ module.exports = {
           client.emit('connected', conn);
         })
         .catch(console.log);
+    }
+
+    client.on('ready', msg => {
+      //listenToServer(client, "466982261351383043");
+      listenToServer(client, "680915973360058414");
     });
     
     // listen
