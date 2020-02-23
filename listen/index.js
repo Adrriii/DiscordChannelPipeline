@@ -6,6 +6,12 @@ module.exports = {
     const fs = require('fs');
     var auth = require('./auth.json');  
     const client = new Discord.Client();
+    
+    class Silence extends Readable {
+      _read() {
+        this.push(Buffer.from([0xF8, 0xFF, 0xFE]));
+      }
+    }
 
     // make a new stream for each time someone starts to talk
     function generateOutputFile(channel, member) {
@@ -18,6 +24,8 @@ module.exports = {
       voiceChannel = client.channels.get("680915973360058414")
         voiceChannel.join()
         .then(conn => { // Connection is an instance of VoiceConnection
+          conn.playOpusStream(new Silence());
+
           client.emit('connected', conn);
         })
         .catch(console.log);

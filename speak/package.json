@@ -9,7 +9,9 @@
   "author": "Adri",
   "license": "MIT",
   "dependencies": {
+    "audio-mixer": "^2.1.4",
     "discord.js": "^11.5.1",
+    "fluent-ffmpeg": "^2.1.2",
     "node-opus": "^0.3.3"
   }
 }
