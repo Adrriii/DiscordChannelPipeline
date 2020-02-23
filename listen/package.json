@@ -9,7 +9,7 @@
   "author": "Adri",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^11.5.1",
+    "discord.js": "github:discordjs/discord.js",
     "node-opus": "^0.3.3"
   }
 }

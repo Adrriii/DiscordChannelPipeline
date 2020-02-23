@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "audio-mixer": "^2.1.4",
-    "discord.js": "^11.5.1",
+    "discord.js": "github:discordjs/discord.js",
     "fluent-ffmpeg": "^2.1.2",
     "node-opus": "^0.3.3"
   }

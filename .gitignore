@@ -10,3 +10,5 @@ void
 listen/auth.json
 
 speak/auth.json
+
+node_modules/

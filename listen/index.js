@@ -21,10 +21,10 @@ module.exports = {
     }
     
     client.on('ready', msg => {
-      voiceChannel = client.channels.get("680915973360058414")
+      voiceChannel = client.channels.cache.get("680915973360058414")
         voiceChannel.join()
         .then(conn => { // Connection is an instance of VoiceConnection
-          conn.playOpusStream(new Silence());
+          conn.play(new Silence(), { type: 'opus' });
 
           client.emit('connected', conn);
         })
