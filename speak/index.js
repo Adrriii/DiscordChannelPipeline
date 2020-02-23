@@ -14,13 +14,9 @@ module.exports = {
           
           const receiver = listener.createReceiver();      
 
-          listener.on('speaking', (user, speaking) => {
-            if (speaking) {
-              // this creates a 16-bit signed PCM, stereo 48KHz PCM stream.
-              const audioStream = receiver.createOpusStream(user);
-              
-              connection.playOpusStream(audioStream);
-            }
+          receiver.on('opus', (user, speak) => {
+            console.log(user);
+            connection.playOpusStream(speak);
           });
         })
         .catch(console.log);
