@@ -20,11 +20,12 @@ module.exports = {
           listener.on('speaking', (user, speak) => {
             if (!user) return;
             if(user.id == "680938963598704650") return;
-            console.log(user.username + " is speaking.  ");
+            
+            const audio = listener.receiver.createStream(user, { modes:"opus" ,end: 'silence'});
 
-            const audio = listener.receiver.createStream(user, { end: 'silence'});
-            speaker.play(audio, { type: 'opus' });
+            speaker.play(audio, { type: 'opus'});
           });
+
           
         })
         .catch(console.log);
