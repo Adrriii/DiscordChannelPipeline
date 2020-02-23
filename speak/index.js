@@ -17,15 +17,28 @@ module.exports = {
         .then(speaker => {          
           console.log('ready');
 
+          let mixer = new AudioMixer.Mixer({
+            channels: 2,
+            bitDepth: 16,
+            sampleRate: 48000,
+            clearInterval: 250
+          });
+
           listener.on('speaking', (user, speak) => {
             if (!user) return;
             if(user.id == "680938963598704650") return;
+            console.log(user.username + " is speaking.  ");
             
-            const audio = listener.receiver.createStream(user, { modes:"opus" ,end: 'silence'});
+            const audio = listener.receiver.createStream(user, { mode:"pcm" ,end: 'silence'});
+            let input = mixer.input({
+                channels: 1,
+                volume: 75
+            });
 
-            speaker.play(audio, { type: 'opus'});
+            audio.pipe(input);
           });
-
+          
+          speaker.play(mixer, { type: 'converted' });
           
         })
         .catch(console.log);
